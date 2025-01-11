@@ -233,30 +233,36 @@ int main(void)
 
 	LLNODE* linkedList = CreateLinkedList(0);
 
+	puts("Linked list: ");
+	start = clock();
 	for (int i = 1; i < N; i++)
 	{
 		AddToLinkedList(&linkedList, i);
 	}
+	end = clock();
+	printf("Time needed for allocation: %dms\n", end - start);
 
-	puts("Linked list: ");
 	//PrintLinkedList(linkedList);
 	start = clock();
 	SearchLinkedList(linkedList, -1);
 	end = clock();
-	printf("Time needed: %dms\n", end - start);
+	printf("Time needed for search: %dms\n", end - start);
 
+	puts("Skip list: ");
+	start = clock();
 	SKIP_NODE* skipList = CreateSkipList(1);
 	for (int i = N; i >= 2; i--)
 	{
 		AddToSkipList(&skipList, i);
 	}
+	end = clock();
+	printf("Time needed for allocation: %dms\n", end - start);
 
-	puts("Skip list: ");
 	//PrintSkipList(skipList);
 	start = clock();
 	SearchSkipList(skipList, N + 1);
 	end = clock();
-	printf("Time needed: %dms\n", end - start);
+	printf("Time needed for search: %dms\n", end - start);
 
 	FreeLinkedList(&linkedList);
 	FreeSkipList(&skipList);
